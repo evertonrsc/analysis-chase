@@ -31,7 +31,7 @@ The materials are provided to support transparency, reproducibility, and seconda
 Loading the data spreadsheet results in the following data frame. The import script coerces dimension values to numeric values to enable descriptive statistics and nonparametric inference.
 
 | Variable name | Description | Type | Units / Coding |
-|----------------|------------|------|----------------|
+|:--------------|:------------|:-----|:---------------|
 | `ID` | Paper ID | Text | — | — |
 | `year` | Paper's publication year | Numeric | Year |
 | `country` | First author's country | Text | - |
