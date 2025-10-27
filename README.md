@@ -1,41 +1,41 @@
-# CHASE Ethics Reporting Dataset and Analysis
+# A Research Ethics Completeness Analysis for CHASE 2008-2025
 
-This repository contains the dataset, R scripts, and analysis materials developed for a meta-research study on **ethics reporting practices in CHASE (IEEE/ACM International Conference on Software Engineering — CHASE Workshop) papers**.  
-The study aims to characterize how CHASE authors report ethical aspects of research involving human participants and to identify trends, gaps, and contextual influences over time.
+This repository contains the dataset, R scripts, and analysis materials developed for a meta-research study on ethics reporting practices in papers published at the *International Conference on Cooperative and Human Aspects of Software Engineering* (CHASE). The study aims to characterize how CHASE authors report ethical aspects of research involving human participants and to identify trends, gaps, and contextual influences over time.
 
----
+## Overview
 
-## 🧭 Overview
+Software Engineering is inherently a socio-technical discipline that relies on the collaboration, cognition, and interaction of people who design, build, and maintain software systems. Research on the human side of Software Engineering, that is, how individuals communicate, make decisions, coordinate work, and experience emotions, has long been recognized as central to improving software quality and team performance. Therefore, many studies involve human participants, including professional developers, students, users, and other stakeholders, raising ethical and methodological concerns about participant consent, risk mitigation, and data protection.
 
-Software engineering research increasingly involves human participants — developers, students, and professionals — raising ethical and methodological concerns regarding participant consent, risk mitigation, and data protection.  
-This repository provides a transparent and reproducible workflow for analyzing the **completeness of ethics reporting** across CHASE papers (2008–2025).
+This repository provides a transparent and reproducible workflow for analyzing the completeness of ethics reporting across CHASE papers published between 2008 and 2025. The materials include:
 
-The materials include:
-- The **final dataset** with scoring for 231 papers.
-- **Analysis scripts** covering descriptive, temporal, correlational, and contextual analyses.
-- A **complete R Markdown document** that reproduces all figures and statistical results presented in the manuscript.
+- The final dataset with scoring for 231 papers.
+- Analysis scripts covering descriptive, temporal, correlational, and contextual analyses.
+- A complete R Markdown document that reproduces all statistical results and visualization charts.
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 .
-├── chase_papers.xlsx          # Dataset (scoring and yearly paper counts)
-├── import_data.R              # Data import and cleaning procedures
-├── theme.R                    # Custom ggplot2 theme for publication plots
-├── rq1_dimensions.R           # Section 3.1 – Corpus scale and paper selection
-├── rq2_temporal.R             # Section 3.2 / 3.4 – Temporal evolution of ethics dimensions
-├── rq3_reporting.R            # Section 3.4 – Underreported dimensions analysis
-├── rq4_context.R              # Section 3.5 – Contextual factors vs. ethics reporting completeness
-├── demographics.R             # Summary of participant and research-type demographics
-├── CHASE_Analysis_From_Scripts.Rmd  # Knit-ready R Markdown for full reproducibility
-└── README.md                  # This file
+├── analysis-chase.Rmd   # Knit-ready R Markdown for full reproducibility
+├── analysis/            # Data analysis scripts
+│   ├── demographics.R   # Script for obtaining an overview of the corpus of analysis
+│   ├── rq1_dimensions.R # Script for analyzing the overall ethics completeness score
+│   ├── rq2_temporal.R   # Script for analyzing ethics reporting over time
+│   ├── rq3_reporting.R  # Script for analyzing ethics dimensions mostly underreported
+│   ├── rq4_context.R    # Script for analyzing ethics reporting completeness against other factors
+├── chase_papers.xlsx    # Dataset (scoring and yearly paper counts)
+├── imports/             # Utility scripts
+│   ├── import_data.R    # Data import procedures
+│   ├── theme.R          # Custom ggplot2 theme for plots
+├── plots/               # Plots generated from the analysis
+└── README.md            # This documentation file
 ```
 
 ---
 
-## ⚙️ Reproducibility Guide
+## Reproducibility Guide
 
 ### 1. Requirements
 
@@ -43,51 +43,51 @@ The analyses were developed and tested under:
 
 | Component | Version |
 |------------|----------|
-| R          | ≥ 4.3.0  |
-| RStudio    | ≥ 2023.12 |
-| Operating System | macOS / Linux / Windows compatible |
+| R          | 4.4.2  |
+| RStudio    | 2025.09.1 |
+| Operating system | macOS / Linux / Windows compatible |
 
-Key R packages:
+Install key R packages with:
 ```r
-tidyverse, readxl, janitor, rstatix, scales, corrplot, stringr, ggplot2
+required_packages <- c("readxl", "dplyr", "ggplot2", "tidyr", "scales", "stringr", "corrplot", "ragg", "rstatix")
+install.packages(required_packages)
 ```
-
-Install missing packages with:
-```r
-install.packages(c("tidyverse", "readxl", "janitor", "rstatix", "scales", "corrplot", "stringr"))
-```
-
 ### 2. Running the Analysis
 
-Option A — **Single-step reproduction**
-```r
-rmarkdown::render("CHASE_Analysis_From_Scripts.Rmd")
-```
-This will reproduce all figures, statistical tests, and tables used in the study.
+Option A — Single-step reproduction
 
-Option B — **Modular analysis**
-You can run the analysis per section (e.g., RQ1–RQ4):
 ```r
-source("import_data.R")
-source("theme.R")
+rmarkdown::render("analysis-chase.Rmd")
+```
+
+This will reproduce all plots, statistical tests, and tables used in the study.
+
+Option B — Modular analysis
+
+You can run the analysis one by one
+
+```r
+source("demographocs.R")
 source("rq1_dimensions.R")
 source("rq2_temporal.R")
 source("rq3_reporting.R")
 source("rq4_context.R")
 ```
 
+Each analysis script loads data with the [`import_data.R`](imports/import_data.R) and uses the custom `ggplot2` theme defined in [`theme.R`](imports/theme.R).
+
 ### 3. Output
 
 Running the R Markdown file will generate:
-- Figures (ECS distributions, stacked proportions, temporal trends, correlation plots)
-- Statistical summaries and Kruskal–Wallis / Dunn post-hoc results
-- Summary tables for dimensions and contextual variables
 
----
+- Charts as figures (ethics completeness score distributions, temporal trends, correlation plots)
+- Statistical summaries and test results
+- Summary tables
+
 
 ## 📊 Dataset Description
 
-**`chase_papers.xlsx`**  
+[`chase_papers.xlsx`](chase-papers.xslx)  
 - **Sheet 1 – Paper-level scoring:** normalized ethics-compliance scores for 10 dimensions  
 - **Sheet 2 – Yearly counts:** number of retrieved and selected papers per year (2008–2025)
 
