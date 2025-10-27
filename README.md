@@ -46,8 +46,8 @@ This repository provides a transparent and reproducible workflow for analyzing t
 
 [`chase_papers.xlsx`](chase-papers.xslx)
 
-- Sheet 1 – Paper-level scoring: normalized ethics completeness scores for 10 dimensions  
-- Sheet 2 – Yearly counts: number of retrieved and selected papers per year (2008–2025)
+- *Data Extraction + Coding*: Paper-level scoring for each of the 10 dimensions and metadata
+- *Corpus Definition + Selection*: Number of retrieved and selected papers per year (2008–2025)
 
 Each paper is coded across 10 ethics reporting dimensions, grouped in four domains of ethical practice. Scores were assigned on a three-point scale:
 
@@ -64,7 +64,7 @@ Loading the data spreadsheet results in the following data frame. The import scr
 | `country` | First author's country | Text | — |
 | `affiliationType` | Author affiliation type | Categorical | Academia, Industry, Academia + Industry |
 | `researchType` | Research type | Categorical | Quantitative, Qualitative, Mixed |
-| `researchMethod` | Research method | Text | —|
+| `researchMethod` | Research method | Text | — |
 | `sampleSize` | Sample size (human participants) | Numeric | — |
 | `participantCategory` | Participant category | Text | —|
 | `irb` | Institutional review approval or waiver reported | Numeric | 0.0, 0.5, 1.0, NA |
@@ -97,9 +97,11 @@ $ ECS_n(p) = \frac{ECS(p)}{n} \times 100 $
 |:-------|:------------|:-----------|
 | [`demographics.R`](analysis/demographics.R) | Overview of the corpus of analysis | Bar chart of retrieved vs. selected papers<br/>Bar chart of distribution of research types<br/>Bar chart of distribution of research methods |
 | [`rq1_dimensions.R`](analysis/rq1_dimensions.R) | State of ethics reporting in CHASE | Descriptive statistics and histogram of overall $ECS_n$ |
-| [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution of ethics reporting | Temporal trend plot with linear regression line for $ECS_n$<br/>Line chart with mean ECS for each dimension<br/>Spearman correlation of $ECS_n$ values and year<br/>Mann-Whitney test comparing $ECS_n$ values for early (2008-2016) and recent (2017-2025) editions |
+| [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution of ethics reporting | Chart with linear regression line for the temporal trend of $ECS_n$<br/>Line chart with mean ECS for each dimension<br/>Spearman correlation of $ECS_n$ values and year<br/>Mann-Whitney test comparing $ECS_n$ values for early (2008-2016) and recent (2017-2025) editions |
 | [`rq3_reporting.R`](analysis/rq3_reporting.R) | Underreported dimensions | Bar chart with ranked mean $ECS$ and correlogram for each dimension |
 | [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. $ECS_n$ | Boxplots and Kruskal-Wallis tests for research type, research method, and human participant category |
+
+Running the analysis scripts generates the plots and saves them as PNG files in the [`plots`](plots) directory.
 
 ## Reproducibility Guide
 
