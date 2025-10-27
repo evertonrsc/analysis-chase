@@ -11,11 +11,11 @@ The materials are provided to support transparency, reproducibility, and seconda
 .
 ├── analysis/            # A directory containing the R scripts used for statistical analysis
                            and the generation of charts
-│   ├── demographics.R   # Class with the implementation of the two benchmarks
-│   ├── rq1_dimensions.R # Class with the implementation of the two benchmarks
-│   ├── rq2_temporal.R   # Class with the implementation of the two benchmarks
-│   ├── rq3_reporting.R  # Class with the implementation of the two benchmarks
-│   ├── rq4_context.R    # Class with the implementation of the two benchmarks
+│   ├── demographics.R   # Script for obtaining an overview of the corpus of analysis
+│   ├── rq1_dimensions.R # Script for analyzing the overall ethics completeness score
+│   ├── rq2_temporal.R   # Script for analyzing ethics reporting over time
+│   ├── rq3_reporting.R  # Script for analyzing ethics dimensions mostly underreported
+│   ├── rq4_context.R    # Script for analyzing ethics reporting completeness against other factors
 ├── chase_papers.xlsx    # A Microsoft Excel spreadsheet with the study's data resulting
                            from the codification of each paper for the ethics-related dimensions
 ├── imports/             # A directory containing auxiliary R scripts for importing data and
@@ -52,3 +52,7 @@ Loading the data spreadsheet results in the following data frame. The import scr
 | `transparency` | Materials available for transparency | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
 
 ## Analysis Workflow
+Each analysis script loads data and imports the required packages. [`import_data.R`](imports/import_data.R) reads data from the spreadsheet on the [`chase_papers.xlsx`](chase_papers.xslx) file and produces two data frames, one with the data itself and the other with the number of published and selected CHASE papers. These two data frames will be used in subsequent analyses.
+
+### Overview of the Corpus
+The first analysis aims to obtain an overview of the selected CHASE papers using the [`demographics.R`](analysis/demographics.R) script.
