@@ -44,7 +44,8 @@ This repository provides a transparent and reproducible workflow for analyzing t
 
 ## Dataset Description
 
-[`chase_papers.xlsx`](chase-papers.xslx)  
+[`chase_papers.xlsx`](chase-papers.xslx)
+
 - Sheet 1 – Paper-level scoring: normalized ethics completeness scores for 10 dimensions  
 - Sheet 2 – Yearly counts: number of retrieved and selected papers per year (2008–2025)
 
@@ -62,11 +63,12 @@ Each paper is coded across 10 ethics reporting dimensions, grouped in four domai
 10. Materials available for transparency  
 
 Scores were assigned on a three-point scale:
+
 - **0.0** – Explicitly and clearly reported in the paper
 - **0.5** – Mentioned without sufficient detail in the paper or reported only in supplementary material
 - **1.0** – Not reported in the paper or lacking verifiable evidence
 
-### Ethics Reporting Completeness Metric
+## Ethics Reporting Completeness Metric
 
 The *Ethics Completeness Score* (ECS) is based on the 10 dimensions described above. For each paper $p$, its ECS corresponds to the sum of the values assigned to all applicable dimensions $d_i$:
 
@@ -78,6 +80,15 @@ A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability 
 
 \[ ECS_n(p) = \frac{ECS(p)}{n} \times 100 \]
 
+## Analyses and Visualizations
+
+| Script | Description | Key Output |
+|:-------|:------------|:-----------|
+| [`demographics.R`](analysis/demographics.R) | Corpus evolution and selection rates | Stacked 100% bars of retrieved vs. selected papers |
+| [`rq1_dimensions.R`](analysis/rq1_dimensions.R) | Corpus evolution and selection rates | Stacked 100% bars of retrieved vs. selected papers |
+| [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution per ethics dimension | Multi-series line plot with all years labeled |
+| [`rq3_reporting.R`](analysis/rq3_reporting.R) | Underreported dimensions | Ranked mean ECS bar chart and correlogram |
+| [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. ECSₙ | Independent boxplots and Kruskal–Wallis tests |
 
 ## Reproducibility Guide
 
@@ -127,24 +138,6 @@ Running the R Markdown file will generate:
 - Charts as figures (ethics completeness score distributions, temporal trends, correlation plots)
 - Statistical summaries and test results
 - Summary tables
-
-## Analyses and Visualizations
-
-| Script | Description | Key Output |
-|---------|--------------|-------------|
-| `rq1_dimensions.R` | Corpus evolution and selection rates | Stacked 100% bars of retrieved vs. selected papers |
-| `rq2_temporal.R` | Temporal evolution per ethics dimension | Multi-series line plot with all years labeled |
-| `rq3_reporting.R` | Underreported dimensions | Ranked mean ECS bar chart and correlogram |
-| `rq4_context.R` | Contextual factors vs. ECSₙ | Independent boxplots and Kruskal–Wallis tests |
-
----
-
-## Interpretation Notes
-
-- **ECS** (Ethics-Compliance Score) aggregates reporting across all applicable dimensions.  
-- **ECSₙ** (Normalized ECS) expresses the proportion of addressed dimensions as a percentage.  
-- Non-parametric tests (Kruskal–Wallis + Dunn’s post-hoc) were used due to non-normal ECSₙ distribution (Shapiro–Wilk *p* < 0.001).  
-- Figures and tables correspond to the CHASE 2026 paper sections 3.1–3.5.
 
 ## License
 
