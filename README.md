@@ -125,17 +125,7 @@ install.packages(required_packages)
 ```
 ### 2. Running the Analysis
 
-Option A — Single-step reproduction
-
-```r
-rmarkdown::render("analysis-chase.Rmd")
-```
-
-This will reproduce all plots, statistical tests, and tables used in the study.
-
-Option B — Modular analysis
-
-You can run the analysis one by one
+You can run the analysis scripts one by one
 
 ```r
 source("demographics.R")
@@ -151,7 +141,7 @@ Each analysis script loads data with the [`import_data.R`](imports/import_data.R
 
 Running the R Markdown file will generate:
 
-- Charts as figures (ethics completeness score distributions, temporal trends, correlation plots)
+- Charts as figures
 - Statistical summaries and test results
 - Summary tables
 
