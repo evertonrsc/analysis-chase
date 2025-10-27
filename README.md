@@ -59,24 +59,24 @@ Loading the data spreadsheet results in the following data frame. The import scr
 
 | Variable name | Description | Type | Units / Coding |
 |:--------------|:------------|:-----|:---------------|
-| `ID` | Paper ID | Text | — | — |
-| `year` | Paper's publication year | Numeric | Year |
-| `country` | First author's country | Text | — |
-| `affiliationType` | Author affiliation type | Categorical | Academia, Industry, Academia + Industry |
-| `researchType` | Research type | Categorical | Quantitative, Qualitative, Mixed |
-| `researchMethod` | Research method | Text | — |
-| `sampleSize` | Sample size (human participants) | Numeric | — |
-| `participantCategory` | Participant category | Text | —|
-| `irb` | Institutional review approval or waiver reported | Numeric | 0.0, 0.5, 1.0, NA |
-| `risk` | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
-| `consent` | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
-| `withdrawal` | Ability to withdraw explicitly statedd | Numeric | 0.0, 0.5, 1.0, NA |
-| `recruitment` | Recruitment method described | Numeric | 0.0, 0.5, 1.0, NA |
-| `compensation` | Compensation strategy ethically justified | Numeric | 0.0, 0.5, 1.0, NA |
-| `vulnerability` | Participant vulnerability and power dynamics addressed | Numeric | 0.0, 0.5, 1.0, NA |
-| `anonymization` | Anonymization procedure and protection of identifying data described | Numeric | 0.0, 0.5, 1.0, NA |
-| `secondaryData` | Use of secondary or publicly available data or artifacts ethically addressed | Numeric | 0.0, 0.5, 1.0, NA |
-| `transparency` | Materials available for transparency | Numeric | 0.0, 0.5, 1.0, NA |
+| *ID* | Paper ID | Text | — | — |
+| *year* | Paper's publication year | Numeric | Year |
+| *country* | First author's country | Text | — |
+| *affiliationType* | Author affiliation type | Categorical | Academia, Industry, Academia + Industry |
+| *researchType* | Research type | Categorical | Quantitative, Qualitative, Mixed |
+| *researchMethod* | Research method | Text | — |
+| *sampleSize* | Sample size (human participants) | Numeric | — |
+| *participantCategory* | Participant category | Text | —|
+| *irb* | Institutional review approval or waiver reported | Numeric | 0.0, 0.5, 1.0, NA |
+| *risk* | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
+| *consent* | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
+| *withdrawal* | Ability to withdraw explicitly statedd | Numeric | 0.0, 0.5, 1.0, NA |
+| *recruitment* | Recruitment method described | Numeric | 0.0, 0.5, 1.0, NA |
+| *compensationv | Compensation strategy ethically justified | Numeric | 0.0, 0.5, 1.0, NA |
+| *vulnerability* | Participant vulnerability and power dynamics addressed | Numeric | 0.0, 0.5, 1.0, NA |
+| *anonymization* | Anonymization procedure and protection of identifying data described | Numeric | 0.0, 0.5, 1.0, NA |
+| *secondaryData* | Use of secondary or publicly available data or artifacts ethically addressed | Numeric | 0.0, 0.5, 1.0, NA |
+| *transparency* | Materials available for transparency | Numeric | 0.0, 0.5, 1.0, NA |
 
 
 ## Ethics Reporting Completeness Metric
@@ -89,7 +89,7 @@ where $n$ is the number of dimensions applicable to that study. Dimensions coded
 
 A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability across papers with differing numbers of applicable dimensions:
 
-$ ECS_n(p) = \frac{ECS(p)}{n} \times 100 $
+$ECS_n(p) = \frac{ECS(p)}{n} \times 100$
 
 ## Analyses and Visualizations
 
