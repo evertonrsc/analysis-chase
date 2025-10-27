@@ -61,22 +61,22 @@ Loading the data spreadsheet results in the following data frame. The import scr
 |:--------------|:------------|:-----|:---------------|
 | `ID` | Paper ID | Text | — | — |
 | `year` | Paper's publication year | Numeric | Year |
-| `country` | First author's country | Text | - |
+| `country` | First author's country | Text | — |
 | `affiliationType` | Author affiliation type | Categorical | Academia, Industry, Academia + Industry |
 | `researchType` | Research type | Categorical | Quantitative, Qualitative, Mixed |
-| `researchMethod` | Research method | Text | - |
-| `sampleSize` | Sample size (human participants) | Numeric | - |
-| `participantCategory` | Participant category | Text | - |
-| `irb` | Institutional review approval or waiver reported | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `risk` | Risk assessment and mitigation procedures described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `consent` | Risk assessment and mitigation procedures described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `withdrawal` | Ability to withdraw explicitly statedd | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `recruitment` | Recruitment method described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `compensation` | Compensation strategy ethically justified | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `vulnerability` | Participant vulnerability and power dynamics addressed | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `anonymization` | Anonymization procedure and protection of identifying data described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `secondaryData` | Use of secondary or publicly available data or artifacts ethically addressed | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
-| `transparency` | Materials available for transparency | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `researchMethod` | Research method | Text | —|
+| `sampleSize` | Sample size (human participants) | Numeric | — |
+| `participantCategory` | Participant category | Text | —|
+| `irb` | Institutional review approval or waiver reported | Numeric | 0.0, 0.5, 1.0, NA |
+| `risk` | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
+| `consent` | Risk assessment and mitigation procedures described | Numeric | 0.0, 0.5, 1.0, NA |
+| `withdrawal` | Ability to withdraw explicitly statedd | Numeric | 0.0, 0.5, 1.0, NA |
+| `recruitment` | Recruitment method described | Numeric | 0.0, 0.5, 1.0, NA |
+| `compensation` | Compensation strategy ethically justified | Numeric | 0.0, 0.5, 1.0, NA |
+| `vulnerability` | Participant vulnerability and power dynamics addressed | Numeric | 0.0, 0.5, 1.0, NA |
+| `anonymization` | Anonymization procedure and protection of identifying data described | Numeric | 0.0, 0.5, 1.0, NA |
+| `secondaryData` | Use of secondary or publicly available data or artifacts ethically addressed | Numeric | 0.0, 0.5, 1.0, NA |
+| `transparency` | Materials available for transparency | Numeric | 0.0, 0.5, 1.0, NA |
 
 
 ## Ethics Reporting Completeness Metric
@@ -89,7 +89,7 @@ where $n$ is the number of dimensions applicable to that study. Dimensions coded
 
 A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability across papers with differing numbers of applicable dimensions:
 
-\[ ECS_n(p) = \frac{ECS(p)}{n} \times 100 \]
+$ ECS_n(p) = \frac{ECS(p)}{n} \times 100 $
 
 ## Analyses and Visualizations
 
@@ -99,7 +99,7 @@ A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability 
 | [`rq1_dimensions.R`](analysis/rq1_dimensions.R) | State of ethics reporting in CHASE | Descriptive statistics and histogram of overall $ECS_n$ |
 | [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution of ethics reporting | Temporal trend plot with linear regression line for $ECS_n$<br/>Line chart with mean ECS for each dimension<br/>Spearman correlation of $ECS_n$ values and year<br/>Mann-Whitney test comparing $ECS_n$ values for early (2008-2016) and recent (2017-2025) editions |
 | [`rq3_reporting.R`](analysis/rq3_reporting.R) | Underreported dimensions | Bar chart with ranked mean $ECS$ and correlogram for each dimension |
-| [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. $ECS_n$ | Boxplots and Kruskal–Wallis tests for research type, research method, and human participant category |
+| [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. $ECS_n$ | Boxplots and Kruskal-Wallis tests for research type, research method, and human participant category |
 
 ## Reproducibility Guide
 
