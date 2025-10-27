@@ -49,24 +49,35 @@ This repository provides a transparent and reproducible workflow for analyzing t
 - Sheet 1 – Paper-level scoring: normalized ethics completeness scores for 10 dimensions  
 - Sheet 2 – Yearly counts: number of retrieved and selected papers per year (2008–2025)
 
-Each paper is coded across 10 ethics reporting dimensions, grouped in four domains of ethical practice. Dimensions include:
-
-1. Institutional review approval or waiver reported  
-2. Risk assessment and mitigation described  
-3. Informed consent reported  
-4. Ability to withdraw stated  
-5. Recruitment method described  
-6. Compensation strategy ethically justified  
-7. Participant vulnerability and power dynamics addressed  
-8. (Pseudo)anonymization procedure described  
-9. Use of secondary or publicly available data ethically addressed  
-10. Materials available for transparency  
-
-Scores were assigned on a three-point scale:
+Each paper is coded across 10 ethics reporting dimensions, grouped in four domains of ethical practice. Scores were assigned on a three-point scale:
 
 - **0.0** – Explicitly and clearly reported in the paper
 - **0.5** – Mentioned without sufficient detail in the paper or reported only in supplementary material
 - **1.0** – Not reported in the paper or lacking verifiable evidence
+
+Loading the data spreadsheet results in the following data frame. The import script coerces dimension values to numeric values to enable descriptive statistics and nonparametric inference.
+
+| Variable name | Description | Type | Units / Coding |
+|:--------------|:------------|:-----|:---------------|
+| `ID` | Paper ID | Text | — | — |
+| `year` | Paper's publication year | Numeric | Year |
+| `country` | First author's country | Text | - |
+| `affiliationType` | Author affiliation type | Categorical | Academia, Industry, Academia + Industry |
+| `researchType` | Research type | Categorical | Quantitative, Qualitative, Mixed |
+| `researchMethod` | Research method | Text | - |
+| `sampleSize` | Sample size (human participants) | Numeric | - |
+| `participantCategory` | Participant category | Text | - |
+| `irb` | Institutional review approval or waiver reported | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `risk` | Risk assessment and mitigation procedures described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `consent` | Risk assessment and mitigation procedures described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `withdrawal` | Ability to withdraw explicitly statedd | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `recruitment` | Recruitment method described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `compensation` | Compensation strategy ethically justified | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `vulnerability` | Participant vulnerability and power dynamics addressed | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `anonymization` | Anonymization procedure and protection of identifying data described | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `secondaryData` | Use of secondary or publicly available data or artifacts ethically addressed | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+| `transparency` | Materials available for transparency | Numeric | 0.0 = no, 0.5 = partially, 1.0 = yes, NA = not applicable |
+
 
 ## Ethics Reporting Completeness Metric
 
@@ -84,11 +95,11 @@ A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability 
 
 | Script | Description | Key Output |
 |:-------|:------------|:-----------|
-| [`demographics.R`](analysis/demographics.R) | Corpus evolution and selection rates | Stacked 100% bars of retrieved vs. selected papers |
-| [`rq1_dimensions.R`](analysis/rq1_dimensions.R) | Corpus evolution and selection rates | Stacked 100% bars of retrieved vs. selected papers |
-| [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution per ethics dimension | Multi-series line plot with all years labeled |
-| [`rq3_reporting.R`](analysis/rq3_reporting.R) | Underreported dimensions | Ranked mean ECS bar chart and correlogram |
-| [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. ECSₙ | Independent boxplots and Kruskal–Wallis tests |
+| [`demographics.R`](analysis/demographics.R) | Overview of the corpus of analysis | Bar chart of retrieved vs. selected papers<br/>Bar chart of distribution of research types<br/>Bar chart of distribution of research methods |
+| [`rq1_dimensions.R`](analysis/rq1_dimensions.R) | State of ethics reporting in CHASE | Descriptive statistics and histogram of overall $ECS_n$ |
+| [`rq2_temporal.R`](analysis/rq2_temporal.R) | Temporal evolution of ethics reporting | Temporal trend plot with linear regression line for $ECS_n$<br/>Line chart with mean ECS for each dimension<br/>Spearman correlation of $ECS_n$ values and year<br/>Mann-Whitney test comparing $ECS_n$ values for early (2008-2016) and recent (2017-2025) editions |
+| [`rq3_reporting.R`](analysis/rq3_reporting.R) | Underreported dimensions | Bar chart with ranked mean $ECS$ and correlogram for each dimension |
+| [`rq4_context.R`](analysis/rq4_reporting.R) | Contextual factors vs. $ECS_n$ | Boxplots and Kruskal–Wallis tests for research type, research method, and human participant category |
 
 ## Reproducibility Guide
 
@@ -96,15 +107,18 @@ A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability 
 
 The analyses were developed and tested under:
 
-| Component | Version |
-|------------|----------|
-| R          | 4.4.2  |
+| Component  | Version   |
+|------------|-----------|
+| R          | 4.4.2     |
 | RStudio    | 2025.09.1 |
 | Operating system | macOS / Linux / Windows compatible |
 
 Install key R packages with:
 ```r
-required_packages <- c("readxl", "dplyr", "ggplot2", "tidyr", "scales", "stringr", "corrplot", "ragg", "rstatix")
+required_packages <- c(
+  "readxl", "dplyr", "ggplot2", "tidyr", "scales",
+  "stringr", "corrplot", "ragg", "rstatix"
+)
 install.packages(required_packages)
 ```
 ### 2. Running the Analysis
@@ -122,7 +136,7 @@ Option B — Modular analysis
 You can run the analysis one by one
 
 ```r
-source("demographocs.R")
+source("demographics.R")
 source("rq1_dimensions.R")
 source("rq2_temporal.R")
 source("rq3_reporting.R")
@@ -141,5 +155,5 @@ Running the R Markdown file will generate:
 
 ## License
 
-All code and scripts are distributed under the **MIT License**.  
-The dataset is released under the **CC BY 4.0** license — you may reuse or adapt it with appropriate attribution.
+All code and scripts are distributed under the [MIT License](LICENSE).  
+The dataset is released under the CC BY 4.0 license. You may reuse or adapt it with appropriate attribution.
