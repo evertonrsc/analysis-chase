@@ -35,8 +35,8 @@ This repository provides a transparent and reproducible workflow for analyzing t
 
 ## Research Questions
 
-| RQ | Focus |
-|----|:------|
+| RQ  | Focus |
+|:----|:------|
 | RQ1 | To what extent do CHASE papers explicitly report key elements of ethical compliance (e.g., ethics approval, informed consent, data protection, risk mitigation)? |
 | RQ2 | How have ethics reporting practices evolved within CHASE? |
 | RQ3 | Which aspects of ethics reporting CHASE papers often omit or underreport? |
@@ -68,11 +68,11 @@ Scores were assigned on a three-point scale:
 
 ### Ethics Reporting Completeness Metric
 
-The *Ethics Completeness Score* (ECS) is based on the 10 dimensions described above. For each paper *p*, its ECS corresponds to the sum of the values assigned to all applicable dimensions $d_i$:
+The *Ethics Completeness Score* (ECS) is based on the 10 dimensions described above. For each paper $p$, its ECS corresponds to the sum of the values assigned to all applicable dimensions $d_i$:
 
-\[ ECS(p) = \sum_{i=1}^n d_i \]
+$ECS(p) = \sum_{i=1}^n d_i$
 
-where *n* is the number of dimensions applicable to that study. Dimensions coded as *Not Applicable* (N/A) are excluded from the calculation to avoid penalizing studies for ethics items that do not apply to their design.
+where $n$ is the number of dimensions applicable to that study. Dimensions coded as *Not Applicable* (N/A) are excluded from the calculation to avoid penalizing studies for ethics items that do not apply to their design.
 
 A *normalized ECS* ($ECS_n$), expressed on a 0-100 scale, enables comparability across papers with differing numbers of applicable dimensions:
 
